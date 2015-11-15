@@ -9,7 +9,7 @@ describe('Todo routes', function() {
   })
 
   describe('/', function() {
-    xit('responds with an empty array when app boots', function() {
+    it('responds with an empty array when app boots', function() {
       /*
        * when we make requests to `/` we will get back an empty array
        * */
@@ -22,7 +22,7 @@ describe('Todo routes', function() {
         })
     })
 
-    xit('responds with a person after a task has been added', function() {
+    it('responds with a person after a task has been added', function() {
       todos.add('zeke', { name: 'a task' })
       return request
         .get('/')
@@ -36,7 +36,7 @@ describe('Todo routes', function() {
   })
 
   describe('/:person', function() {
-    xit('lists tasks for a user with a get request', function() {
+    it('lists tasks for a user with a get request', function() {
       todos.add('bob', { name: 'task for bob' })
       return request
         .get('/bob')
@@ -49,7 +49,7 @@ describe('Todo routes', function() {
         })
     })
 
-    xit('adds to the person\'s task list with a post request', function() {
+    it('adds to the person\'s task list with a post request', function() {
       return request
         .post('/sarah')
         .send({ name: 'one of sarah\'s tasks'})
@@ -68,7 +68,7 @@ describe('Todo routes', function() {
         todos.add('billy', {name: 'enable requests for specific todos'})
       });
 
-      xit('can get only completed tasks', function () {
+      it('can get only completed tasks', function () {
         return request
           .get('/billy?status=complete')
           .expect(200)
@@ -79,7 +79,7 @@ describe('Todo routes', function() {
           })
       })
 
-      xit('can get only active tasks', function () {
+      it('can get only active tasks', function () {
         return request
           .get('/billy?status=active')
           .expect(200)
@@ -92,7 +92,7 @@ describe('Todo routes', function() {
     })
 
     describe('/:index', function()  {
-      xit('marks a task as complete with a put request', function() {
+      it('marks a task as complete with a put request', function() {
         todos.add('seema', {})
         todos.add('seema', {})
         todos.add('seema', {})
@@ -105,7 +105,7 @@ describe('Todo routes', function() {
           })
       })
 
-      xit('removes a task with a delete request', function() {
+      it('removes a task with a delete request', function() {
         todos.add('david', {})
         todos.add('david', {})
         todos.add('david', {})
@@ -120,13 +120,13 @@ describe('Todo routes', function() {
     })
 
     describe('errors', function() {
-      xit('sends back a 404 if a user does not exist', function () {
+      it('sends back a 404 if a user does not exist', function () {
         return request
           .get('/obama')
           .expect(404)
       })
 
-      xit('sends back a 400 if you attempt to add a todo with non-standard field', function () {
+      it('sends back a 400 if you attempt to add a todo with non-standard field', function () {
         return request
           .post('/bob')
           .send({thisField: 'is neither `name` nor `complete` and so is not allowed'})
